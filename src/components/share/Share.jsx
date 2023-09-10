@@ -1,12 +1,17 @@
 import "./share.css";
 import {PermMedia, Label,Room, EmojiEmotions, Height} from "@material-ui/icons"
-import { useRef,useState } from "react";
+import { useRef,useState,useEffect } from "react";
 
 
 export default function Share({postdata,setPost}) {
   const [image,setImage]=useState();
   const[text,setText]=useState();
+  const[share,setShare]=useState(true)
   const imageref=useRef();
+useEffect(()=>{
+  setImage("")
+  setText("")
+},[share] )
   const handleImageClick=()=>{
     imageref.current.click();
   }
@@ -29,6 +34,7 @@ export default function Share({postdata,setPost}) {
       comment: 0,
     }
     setPost([data, ...postdata])
+    setShare((sh)=>{!sh})
   }
   return (
     <div className="share">
