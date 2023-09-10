@@ -3,11 +3,26 @@ import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
-import { useContext } from "react";
+import { useContext ,useRef,useEffect} from "react";
 import { appContext } from "../../App";
+import { Users } from "../../dummyData";
+
 
 export default function Profile() {
-  const {userdata}=useContext(appContext);
+  
+  const imgprofile=useRef();
+  const {userdata,setList,imgurl,setUrl}=useContext(appContext);
+
+useEffect(()=>{
+   setList([...Users,{id:11, profilePicture:imgurl,username:userdata.name}])
+},[imgurl])
+
+  const handleProfile=()=>{
+    imgprofile.current.click();
+  }
+  const handleUrl=(e)=>{
+    setUrl(URL.createObjectURL(e.target.files[0]));
+  }
   return (
     <>
       <Topbar />
@@ -23,9 +38,12 @@ export default function Profile() {
               />
               <img
                 className="profileUserImg"
-                src="assets/person/7.jpeg"
-                alt=""
+                src={imgurl}
+                alt="userProfile"
+                onClick={handleProfile}
+                
               />
+              <input type="file" ref={imgprofile} onChange={handleUrl} accept="image/*" style={{display:"none"}}/>
             </div>
             <div className="profileInfo">
                 <h4 className="profileInfoName">{userdata.name}</h4>

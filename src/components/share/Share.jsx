@@ -1,9 +1,11 @@
 import "./share.css";
 import {PermMedia, Label,Room, EmojiEmotions, Height} from "@material-ui/icons"
 import { useRef,useState,useEffect } from "react";
-
+import { useContext } from "react";
+import { appContext } from "../../App";
 
 export default function Share({postdata,setPost}) {
+  const {imgurl}=useContext(appContext);
   const [image,setImage]=useState();
   const[text,setText]=useState();
   const[share,setShare]=useState(true)
@@ -29,7 +31,7 @@ useEffect(()=>{
       desc: text,
       photo: image,
       date: "Now",
-      userId: 1,
+      userId: 11,
       like: 0,
       comment: 0,
     }
@@ -40,7 +42,7 @@ useEffect(()=>{
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img className="shareProfileImg" src="/assets/person/1.jpeg" alt="" />
+          <img className="shareProfileImg" src={imgurl} alt="" />
           <input
             placeholder="What's in your mind "
             className="shareInput"

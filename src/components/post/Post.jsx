@@ -2,8 +2,11 @@ import "./post.css";
 import { MoreVert } from "@material-ui/icons";
 import { Users } from "../../dummyData";
 import { useState } from "react";
+import { useContext } from "react";
+import { appContext } from "../../App";
 
 export default function Post({ post }) {
+  const {userlist,imgurl}=useContext(appContext);
   const [like,setLike] = useState(post.like)
   const [isLiked,setIsLiked] = useState(false)
 
@@ -18,11 +21,11 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
+              src={userlist.filter((u) => u.id === post?.userId)[0].profilePicture}
               alt=""
             />
             <span className="postUsername">
-              {Users.filter((u) => u.id === post?.userId)[0].username}
+              {userlist.filter((u) => u.id === post?.userId)[0].username}
             </span>
             <span className="postDate">{post.date}</span>
           </div>
