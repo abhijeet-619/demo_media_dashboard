@@ -25,7 +25,7 @@ useEffect(()=>{
   }
   const handlePost=()=>{
     const data={
-      id: 11,
+      id:postdata.length+1,
       desc: text,
       photo: image,
       date: "Now",
@@ -47,7 +47,7 @@ useEffect(()=>{
             value={text}
             onChange={handleTextChange}
           />
-          {image && <img src={image} alt=""  style={{width:100,Height:50, marginInline:10}}/>}
+          {image && <img src={image} alt=""  style={{width:"100px",height:"80px" ,marginInline:10}}/>}
         </div>
         <hr className="shareHr"/>
         <div className="shareBottom">
