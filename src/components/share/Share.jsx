@@ -34,7 +34,7 @@ useEffect(()=>{
       comment: 0,
     }
     setPost([data, ...postdata])
-    setShare((sh)=>{!sh})
+    setShare(!share)
   }
   return (
     <div className="share">
