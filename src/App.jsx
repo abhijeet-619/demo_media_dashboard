@@ -11,10 +11,11 @@ function App() {
   const [postdata,setPost]=useState(Posts)
  // Users.push({id:11,profilePicture:"assets/person/7.jpeg",username:"Roman Reigns"})
  const[imgurl,setUrl]=useState("assets/person/7.jpeg");
+ const[bgurl,setBg]=useState("assets/post/3.jpeg")
   const[userlist,setList]=useState([...Users,{id:11,profilePicture:"assets/person/7.jpeg",username:userdata.name}]);
   return (
   <>
-  <appContext.Provider value={{userdata,setUser,postdata,setPost,userlist,setList,imgurl,setUrl}}>
+  <appContext.Provider value={{userdata,setUser,postdata,setPost,userlist,setList,imgurl,setUrl,bgurl,setBg}}>
    <Routes>
     <Route path='/' element={<Login/>}/>
     <Route path='/home' element={<Home/>}/>

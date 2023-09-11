@@ -3,7 +3,7 @@ import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
-import { useContext ,useRef,useEffect} from "react";
+import { useContext ,useRef,useEffect, useState} from "react";
 import { appContext } from "../../App";
 import { Users } from "../../dummyData";
 
@@ -11,7 +11,9 @@ import { Users } from "../../dummyData";
 export default function Profile() {
   
   const imgprofile=useRef();
-  const {userdata,setList,imgurl,setUrl}=useContext(appContext);
+  const bgprofile=useRef();
+  const {userdata,setList,imgurl,setUrl,bgurl,setBg}=useContext(appContext);
+ 
 
 useEffect(()=>{
    setList([...Users,{id:11, profilePicture:imgurl,username:userdata.name}])
@@ -20,8 +22,14 @@ useEffect(()=>{
   const handleProfile=()=>{
     imgprofile.current.click();
   }
+  const handleBg=()=>{
+    bgprofile.current.click();
+  }
   const handleUrl=(e)=>{
     setUrl(URL.createObjectURL(e.target.files[0]));
+  }
+  const handleBgUrl=(e)=>{
+    setBg(URL.createObjectURL(e.target.files[0]));
   }
   return (
     <>
@@ -33,8 +41,9 @@ useEffect(()=>{
             <div className="profileCover">
               <img
                 className="profileCoverImg"
-                src="assets/post/3.jpeg"
-                alt=""
+                src={bgurl}
+                alt="bgimage"
+                onClick={handleBg}
               />
               <img
                 className="profileUserImg"
@@ -44,6 +53,7 @@ useEffect(()=>{
                 
               />
               <input type="file" ref={imgprofile} onChange={handleUrl} accept="image/*" style={{display:"none"}}/>
+              <input type="file" ref={bgprofile} onChange={handleBgUrl} accept="image/*" style={{display:"none"}}/>
             </div>
             <div className="profileInfo">
                 <h4 className="profileInfoName">{userdata.name}</h4>
