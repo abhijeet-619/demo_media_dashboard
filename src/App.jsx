@@ -19,7 +19,7 @@ function App() {
    <Routes>
     <Route path='/' element={<Login/>}/>
     <Route path='/home' element={<Home/>}/>
-    <Route path='/profile' element={<Profile/>}/>
+    <Route path='/profile/:username' element={<Profile/>}/>
    </Routes>
    </appContext.Provider>
     
